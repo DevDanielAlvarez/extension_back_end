@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
-            $table->string('registration_number'); // managed by observer
+            $table->string('registration_number')->unique(); // managed by observer
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
