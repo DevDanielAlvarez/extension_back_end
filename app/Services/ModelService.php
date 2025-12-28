@@ -15,9 +15,9 @@ abstract class ModelService
         $this->setRecord($record);
     }
 
-    public static function create(array|IsDTO $dto)
+    public static function create(array|IsDTO $dto): static
     {
-        self::getModelPath()::create($dto->toArray());
+        return new static(self::getModelPath()::create($dto->toArray()));
     }
     public function getRecord(): Model
     {
