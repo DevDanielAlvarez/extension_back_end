@@ -2,9 +2,10 @@
 
 namespace App\Dto;
 
-use App\Contracts\IsDTO;
+use App\Contracts\IsDto;
 
-class UserDto implements IsDTO
+
+class UserDto implements IsDto
 {
     public function __construct(
         public readonly string $name,

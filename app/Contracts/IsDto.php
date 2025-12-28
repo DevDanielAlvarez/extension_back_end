@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-interface IsDTO
+interface IsDto
 {
     public function toArray(): array;
 }

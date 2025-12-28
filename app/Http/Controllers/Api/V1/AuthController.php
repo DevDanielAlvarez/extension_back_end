@@ -23,14 +23,14 @@ class AuthController extends Controller
         $data = $request->validated();
         //create dto to create user
         $dto = new UserDto(
-            name: $data->name,
+            name: $data['name'],
             registration_number: '', // empty, will be set by observer
-            password: $data->password
+            password: $data['password']
         );
         //create user using service layer
         $userCreated = UserService::create($dto);
         //generate auth token
-        $token = $userCreated->getRecord()->generateToken('auth_token')->plainTextToken;
+        $token = $userCreated->getRecord()->createToken('auth_token')->plainTextToken;
         //return user and token
         return response()->json([
             'user' => UserResource::make($userCreated->getRecord()),
