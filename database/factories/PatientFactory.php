@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\DocumentTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class PatientFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'document_type' => $this->faker->randomElement(DocumentTypeEnum::cases()),
+            'document_number' => $this->faker->numerify('###########'),
+            'admission_date' => $this->faker->date(),
+            'birthday' => $this->faker->date(),
+            'telephone' => $this->faker->phoneNumber(),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DocumentTypeEnum;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,5 +20,9 @@ class Patient extends Model
         'birthday',
         'telephone',
         'nursing_assessments'
+    ];
+
+    protected $casts = [
+        'document_type' => DocumentTypeEnum::class,
     ];
 }
