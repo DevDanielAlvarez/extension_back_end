@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->date('admission_date');
             $table->date('birthday');
             $table->string('telephone')->nullable();
-            $table->json('nursing_assessments')->nullable(); //anamnese
+            $table->json('nursing_assessments')->nullable();
             $table->timestamps();
         });
     }

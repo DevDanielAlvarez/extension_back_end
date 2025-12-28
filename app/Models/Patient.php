@@ -2,11 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
     /** @use HasFactory<\Database\Factories\PatientFactory> */
-    use HasFactory;
+    use HasFactory, HasUlids;
+
+    protected $fillable = [
+        'name',
+        'document_type',
+        'document_number',
+        'admission_date',
+        'birthday',
+        'telephone',
+        'nursing_assessments'
+    ];
 }
