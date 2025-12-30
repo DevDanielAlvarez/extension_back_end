@@ -11,6 +11,8 @@ Route::prefix('v1')->group(function () {
     // ====> START AUTH ROUTES <====
     // route to register user
     Route::post('register', [AuthController::class, 'register'])->name('v1.register');
+    //route to login user
+    Route::post('login', [AuthController::class, 'login'])->name('v1.login');
     // ====> END AUTH ROUTES <====
     // ====> START PROTECTED ROUTES <====
     Route::middleware('auth:sanctum')->group(function () {
