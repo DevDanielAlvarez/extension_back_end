@@ -16,9 +16,7 @@ Route::prefix('v1')->group(function () {
     // ====> END AUTH ROUTES <====
     // ====> START PROTECTED ROUTES <====
     Route::middleware('auth:sanctum')->group(function () {
-        Route::get('/user', function (Request $request) {
-            return $request->user();
-        });
+        Route::get('/user', [AuthController::class, 'user'])->name('v1.user');
         Route::post('/logout', [AuthController::class, 'logout'])->name('v1.logout');
     });
 });

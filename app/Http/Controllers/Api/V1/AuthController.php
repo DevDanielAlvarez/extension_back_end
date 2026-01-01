@@ -255,17 +255,90 @@ class AuthController extends Controller
     }
 
     /**
-     * logout auth user
-     * @param Request $request
-     * @return JsonResponse
+     * Get authenticated user
+     * 
+     * Retrieves the authenticated user data using the Bearer token.
+     *
+     * @param Request $request - Authenticated user request
+     * @return UserResource Authenticated user data
      */
+    #[OA\Get(
+        path: '/api/v1/user',
+        summary: 'Get authenticated user',
+        description: 'Retrieves the authenticated user profile data',
+        tags: ['Authentication'],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'User data retrieved successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    description: 'User resource object'
+                )
+            ),
+            new OA\Response(
+                response: 401,
+                description: 'Unauthenticated - invalid or missing token',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string', example: 'Unauthenticated')
+                    ]
+                )
+            )
+        ],
+        security: [['bearerAuth' => []]]
+    )]
+    public function user(Request $request): UserResource
+    {
+        //return the user using his resource
+        return UserResource::make($request->user());
+    }
+
+    /**
+     * Logout authenticated user
+     * 
+     * Logs out the authenticated user by deleting their current access token.
+     *
+     * @param Request $request - Authenticated user request
+     * @return JsonResponse Logout confirmation message
+     */
+    #[OA\Post(
+        path: '/api/v1/logout',
+        summary: 'Logout user',
+        description: 'Logs out the authenticated user and invalidates their token',
+        tags: ['Authentication'],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'User logged out successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string', example: 'Successfully logged out')
+                    ]
+                )
+            ),
+            new OA\Response(
+                response: 401,
+                description: 'Unauthenticated - invalid or missing token',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string', example: 'Unauthenticated')
+                    ]
+                )
+            )
+        ],
+        security: [['bearerAuth' => []]]
+    )]
     public function logout(Request $request): JsonResponse
     {
         //delete current acess token
         $request->user()->currentAccessToken()->delete();
         //return message
         return response()->json([
-            'message' => 'Secessfully logged out'
+            'message' => 'Successfully logged out'
         ]);
     }
 
