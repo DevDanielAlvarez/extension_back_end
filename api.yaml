@@ -1,0 +1,197 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Api
+meta:
+  id: wrk_e1cc23d5624d44e9872f209842d58f68
+  created: 1767366245805
+  modified: 1767366457811
+  description: ""
+collection:
+  - url: http://localhost:8000/api/v1/ping
+    name: ping
+    meta:
+      id: req_cd9fb3e210a34326bb35c15cb9603354
+      created: 1766878810138
+      modified: 1766878848025
+      isPrivate: false
+      description: ""
+      sortKey: -1766878810138
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.2.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - name: Auth
+    meta:
+      id: fld_fbd0f92b25b64367a8ed5796ab58fcfd
+      created: 1766953945951
+      modified: 1766953945951
+      sortKey: -1766953945952
+      description: ""
+    children:
+      - url: http://localhost:8000/api/v1/register
+        name: Register
+        meta:
+          id: req_fac4b962a9f449cbaa14cf82cc9bb764
+          created: 1766953947789
+          modified: 1766955512104
+          isPrivate: false
+          description: ""
+          sortKey: -1766953947789
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: name
+              value: daniel
+              description: ""
+              disabled: false
+            - name: password
+              value: asdasdadsad
+              description: ""
+              disabled: false
+            - name: password_confirmation
+              value: asdasdadsad
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/login
+        name: Login
+        meta:
+          id: req_7043d9c349084740823724508e497b04
+          created: 1767126757441
+          modified: 1767298297713
+          isPrivate: false
+          description: ""
+          sortKey: -1767126757441
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: registration_number
+              value: " A-00001"
+              description: ""
+              disabled: false
+            - name: password
+              value: qqqqqqqq
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/logout
+        name: Logout
+        meta:
+          id: req_d7d9bf6bac6247dfb23e619386052b9c
+          created: 1767298252832
+          modified: 1767298758008
+          isPrivate: false
+          description: ""
+          sortKey: -1767298252832
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer 12|3rDhBmoLcT1nlVL5gThDdLhHf9biuRKGnd6Rg0Ys5cc4afa1
+            description: ""
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/user
+        name: User
+        meta:
+          id: req_919123544b844a4d8447ff18ebe14270
+          created: 1767298618773
+          modified: 1767365743047
+          isPrivate: false
+          description: ""
+          sortKey: -1767298252932
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer 13|Yfj5DuW8RXcpgeMtva5NuUAEP1cODIZ9OyLMG7dpbe3ee735
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_294496764d994647a37f7c3db41c7fd9
+    created: 1766878810131
+    modified: 1766878810131
+environments:
+  name: Base Environment
+  meta:
+    id: env_8a7ccc3481a741a8bd8cc9cef577f2a7
+    created: 1766878810128
+    modified: 1766878810128
+    isPrivate: false
