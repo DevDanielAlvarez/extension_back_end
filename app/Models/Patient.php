@@ -23,6 +23,7 @@ class Patient extends Model
     ];
 
     protected $casts = [
+        'nursing_assessments' => 'array',
         'document_type' => DocumentTypeEnum::class,
     ];
 }

@@ -321,9 +321,154 @@
                     }
                 ]
             }
+        },
+        "/api/v1/patients": {
+            "post": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Create new patient",
+                "description": "Creates a new patient record with provided information",
+                "operationId": "9296610ded1a685f9284d36de20ab313",
+                "requestBody": {
+                    "description": "Data for creating new patient",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatientDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PatientResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
+        "schemas": {
+            "PatientDto": {
+                "title": "PatientDto",
+                "description": "DTO to Patient",
+                "required": [
+                    "name",
+                    "document_type",
+                    "document_number",
+                    "telephone"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Nome completo",
+                        "type": "string",
+                        "example": "Maria Silva"
+                    },
+                    "document_type": {
+                        "description": "Tipo de documento",
+                        "type": "string",
+                        "enum": [
+                            "RG",
+                            "CPF"
+                        ],
+                        "example": "CPF"
+                    },
+                    "document_number": {
+                        "description": "Número do documento",
+                        "type": "string",
+                        "example": "12345678900"
+                    },
+                    "birthday": {
+                        "description": "Data de nascimento",
+                        "type": "string",
+                        "format": "date",
+                        "example": "1990-05-15"
+                    },
+                    "telephone": {
+                        "description": "Telefone de contato",
+                        "type": "string",
+                        "example": "11987654321"
+                    },
+                    "nursing_assessments": {
+                        "description": "Avaliações de enfermagem",
+                        "type": "string",
+                        "example": [
+                            "Paciente estável"
+                        ]
+                    },
+                    "admission_date": {
+                        "description": "admission date",
+                        "example": "2026-02-20"
+                    },
+                    "id": {
+                        "description": "ID do paciente",
+                        "type": "string",
+                        "example": 1,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "PatientResource": {
+                "title": "PatientResource",
+                "description": "Resposta detalhada do paciente",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Maria Silva"
+                    },
+                    "document_type": {
+                        "type": "string",
+                        "example": "CPF"
+                    },
+                    "document_number": {
+                        "type": "string",
+                        "example": "12345678900"
+                    },
+                    "birthday": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "1990-05-15"
+                    },
+                    "admission_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2026-02-20"
+                    },
+                    "telephone": {
+                        "type": "string",
+                        "example": "11987654321"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-10-27T10:00:00Z"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
@@ -339,6 +484,10 @@
         {
             "name": "Authentication",
             "description": "Authentication"
+        },
+        {
+            "name": "Patients",
+            "description": "Patients"
         }
     ]
 }

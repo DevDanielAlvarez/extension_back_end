@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->string('telephone')->nullable();
             $table->json('nursing_assessments')->nullable();
             $table->timestamps();
+
+            $table->unique(['document_type', 'document_number']);
         });
     }
 
