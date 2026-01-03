@@ -7,14 +7,20 @@ use App\Enums\DocumentTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Patient\StorePatientRequest;
 use App\Http\Resources\Api\V1\PatientResource;
+use App\Models\Patient;
 use App\Services\PatientService;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use OpenApi\Attributes as OA;
 
 class PatientController extends Controller
 {
+    public function index(): AnonymousResourceCollection
+    {
+        return PatientResource::collection(Patient::paginate(10));
+    }
     /**
      * Create new patient
      * 
