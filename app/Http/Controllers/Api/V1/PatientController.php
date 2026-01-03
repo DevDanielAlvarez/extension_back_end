@@ -17,6 +17,24 @@ use OpenApi\Attributes as OA;
 
 class PatientController extends Controller
 {
+    /**
+     * Get all patients
+     * 
+     * Retrieves a paginated list of all patients.
+     *
+     * @return AnonymousResourceCollection Paginated collection of patients
+     */
+    #[OA\Get(
+        path: '/api/v1/patients',
+        summary: 'List all patients',
+        description: 'Retrieves a paginated list of all patients',
+        tags: ['Patients'],
+        responses: [
+            new OA\Response(response: 200, description: 'Success'),
+            new OA\Response(response: 401, description: 'Unauthenticated')
+        ],
+        security: [['bearerAuth' => []]]
+    )]
     public function index(): AnonymousResourceCollection
     {
         return PatientResource::collection(Patient::paginate(10));
