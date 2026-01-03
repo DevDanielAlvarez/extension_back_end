@@ -39,6 +39,43 @@ class PatientController extends Controller
     {
         return PatientResource::collection(Patient::paginate(10));
     }
+
+    /**
+     * Show individual patient
+     * 
+     * Retrieves a specific patient by ID.
+     *
+     * @param string $id - Patient ID
+     * @return PatientResource Patient data
+     */
+    #[OA\Get(
+        path: '/api/v1/patients/{id}',
+        summary: 'Get patient by ID',
+        description: 'Retrieves a specific patient by ID',
+        tags: ['Patients'],
+        parameters: [
+            new OA\Parameter(
+                name: 'id',
+                in: 'path',
+                required: true,
+                description: 'Patient ID',
+                schema: new OA\Schema(type: 'string')
+            )
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Success', content: new OA\JsonContent(ref: '#/components/schemas/PatientResource')),
+            new OA\Response(response: 404, description: 'Patient not found'),
+            new OA\Response(response: 401, description: 'Unauthenticated')
+        ],
+        security: [['bearerAuth' => []]]
+    )]
+    public function show(string $id): PatientResource
+    {
+        //find user using id from request
+        $patient = Patient::findOrFail($id);
+        //return patient found
+        return PatientResource::make($patient);
+    }
     /**
      * Create new patient
      * 
