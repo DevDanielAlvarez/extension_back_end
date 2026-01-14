@@ -14,7 +14,9 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
+use Throwable;
 
 class PatientController extends Controller
 {
@@ -149,5 +151,18 @@ class PatientController extends Controller
             'message' => 'Record updated successfully',
             'data' => PatientResource::make($patient->getRecord())
         ]);
+    }
+
+    public function destroy(string $id): Response|JsonResponse
+    {
+        try {
+            $patient = PatientService::find($id);
+            $patient->delete();
+            return response()->noContent();
+        } catch (Throwable $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], status: 500);
+        }
     }
 }

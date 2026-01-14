@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Contracts\IsDTO;
 use App\Dto\UserDto;
 use Illuminate\Database\Eloquent\Model;
+use RuntimeException;
 
 /**
  * Abstract class to handle models working as service layer
@@ -58,6 +59,11 @@ abstract class ModelService
         //update with array
         $this->getRecord()->update($data);
         return $this;
+    }
+
+    public function delete(): void
+    {
+        $this->record->delete();
     }
     public function getRecord(): Model
     {
