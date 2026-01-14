@@ -6,6 +6,7 @@ use App\Dto\PatientDto;
 use App\Enums\DocumentTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Patient\StorePatientRequest;
+use App\Http\Requests\Api\V1\Patient\UpdatePatientRequest;
 use App\Http\Resources\Api\V1\PatientResource;
 use App\Models\Patient;
 use App\Services\PatientService;
@@ -25,16 +26,16 @@ class PatientController extends Controller
      * @return AnonymousResourceCollection Paginated collection of patients
      */
     #[OA\Get(
-        path: '/api/v1/patients',
-        summary: 'List all patients',
-        description: 'Retrieves a paginated list of all patients',
-        tags: ['Patients'],
-        responses: [
-            new OA\Response(response: 200, description: 'Success'),
-            new OA\Response(response: 401, description: 'Unauthenticated')
-        ],
-        security: [['bearerAuth' => []]]
-    )]
+            path: '/api/v1/patients',
+            summary: 'List all patients',
+            description: 'Retrieves a paginated list of all patients',
+            tags: ['Patients'],
+            responses: [
+                new OA\Response(response: 200, description: 'Success'),
+                new OA\Response(response: 401, description: 'Unauthenticated')
+            ],
+            security: [['bearerAuth' => []]]
+        )]
     public function index(): AnonymousResourceCollection
     {
         return PatientResource::collection(Patient::paginate(10));
@@ -49,26 +50,26 @@ class PatientController extends Controller
      * @return PatientResource Patient data
      */
     #[OA\Get(
-        path: '/api/v1/patients/{id}',
-        summary: 'Get patient by ID',
-        description: 'Retrieves a specific patient by ID',
-        tags: ['Patients'],
-        parameters: [
-            new OA\Parameter(
-                name: 'id',
-                in: 'path',
-                required: true,
-                description: 'Patient ID',
-                schema: new OA\Schema(type: 'string')
-            )
-        ],
-        responses: [
-            new OA\Response(response: 200, description: 'Success', content: new OA\JsonContent(ref: '#/components/schemas/PatientResource')),
-            new OA\Response(response: 404, description: 'Patient not found'),
-            new OA\Response(response: 401, description: 'Unauthenticated')
-        ],
-        security: [['bearerAuth' => []]]
-    )]
+            path: '/api/v1/patients/{id}',
+            summary: 'Get patient by ID',
+            description: 'Retrieves a specific patient by ID',
+            tags: ['Patients'],
+            parameters: [
+                new OA\Parameter(
+                    name: 'id',
+                    in: 'path',
+                    required: true,
+                    description: 'Patient ID',
+                    schema: new OA\Schema(type: 'string')
+                )
+            ],
+            responses: [
+                new OA\Response(response: 200, description: 'Success', content: new OA\JsonContent(ref: '#/components/schemas/PatientResource')),
+                new OA\Response(response: 404, description: 'Patient not found'),
+                new OA\Response(response: 401, description: 'Unauthenticated')
+            ],
+            security: [['bearerAuth' => []]]
+        )]
     public function show(string $id): PatientResource
     {
         //find user using id from request
@@ -85,21 +86,21 @@ class PatientController extends Controller
      * @return JsonResponse Created patient data with confirmation message
      */
     #[OA\Post(
-        path: '/api/v1/patients',
-        summary: 'Create new patient',
-        description: 'Creates a new patient record with provided information',
-        tags: ['Patients'],
-        requestBody: new OA\RequestBody(
-            description: 'Data for creating new patient',
-            required: true,
-            content: new OA\JsonContent(ref: '#/components/schemas/PatientDto')
-        ),
-        responses: [
-            new OA\Response(response: 201, description: 'Created', content: new OA\JsonContent(ref: '#/components/schemas/PatientResource')),
-            new OA\Response(response: 422, description: 'Validation Error')
-        ],
-        security: [['bearerAuth' => []]]
-    )]
+            path: '/api/v1/patients',
+            summary: 'Create new patient',
+            description: 'Creates a new patient record with provided information',
+            tags: ['Patients'],
+            requestBody: new OA\RequestBody(
+                description: 'Data for creating new patient',
+                required: true,
+                content: new OA\JsonContent(ref: '#/components/schemas/PatientDto')
+            ),
+            responses: [
+                new OA\Response(response: 201, description: 'Created', content: new OA\JsonContent(ref: '#/components/schemas/PatientResource')),
+                new OA\Response(response: 422, description: 'Validation Error')
+            ],
+            security: [['bearerAuth' => []]]
+        )]
     public function store(StorePatientRequest $request): JsonResponse
     {
         //get validated data from request
@@ -122,5 +123,31 @@ class PatientController extends Controller
             'message' => 'Patient created successfully',
             'patient' => PatientResource::make($patient),
         ], 201);
+    }
+
+    public function update(string $id, UpdatePatientRequest $request): JsonResponse
+    {
+        // Get validated fields from http request
+        $validatedFields = $request->validated();
+        // Find the patient to update
+        $patient = PatientService::find($id);
+        // Create a dto to update the patient
+        $dto = new PatientDto(
+            name: $validatedFields['name'],
+            document_type: DocumentTypeEnum::from($validatedFields['document_type']),
+            document_number: $validatedFields['document_number'],
+            birthday: Carbon::createFromFormat('Y-m-d', $validatedFields['birthday']),
+            telephone: $validatedFields['telephone'],
+            nursing_assessments: $validatedFields['nursing_assessments'],
+            admission_date: Carbon::createFromFormat('Y-m-d', $validatedFields['admission_date']),
+            id: $id // Optional because the ID is provided via HTTP request parameter
+        );
+        // Update patient using the previously created DTO
+        $patient->update($dto);
+        //return the patient
+        return response()->json([
+            'message' => 'Record updated successfully',
+            'data' => PatientResource::make($patient->getRecord())
+        ]);
     }
 }
