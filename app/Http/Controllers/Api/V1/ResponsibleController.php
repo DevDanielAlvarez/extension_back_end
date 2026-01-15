@@ -32,4 +32,9 @@ class ResponsibleController extends Controller
             'data' => new ResponsibleResource($responsibleService->getRecord())
         ], 201);
     }
+
+    public function update()
+    {
+
+    }
 }
