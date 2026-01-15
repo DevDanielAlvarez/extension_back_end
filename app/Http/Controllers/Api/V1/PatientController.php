@@ -127,6 +127,42 @@ class PatientController extends Controller
         ], 201);
     }
 
+    /**
+     * Update patient
+     *
+     * Updates a specific patient by ID.
+     *
+     * @param string $id - Patient ID
+     * @param UpdatePatientRequest $request
+     * @return JsonResponse Updated patient data
+     */
+    #[OA\Put(
+            path: '/api/v1/patients/{id}',
+            summary: 'Update patient',
+            description: 'Updates a specific patient by ID',
+            tags: ['Patients'],
+            parameters: [
+                new OA\Parameter(
+                    name: 'id',
+                    in: 'path',
+                    required: true,
+                    description: 'Patient ID',
+                    schema: new OA\Schema(type: 'string')
+                )
+            ],
+            requestBody: new OA\RequestBody(
+                description: 'Data for updating patient',
+                required: true,
+                content: new OA\JsonContent(ref: '#/components/schemas/PatientDto')
+            ),
+            responses: [
+                new OA\Response(response: 200, description: 'Patient updated successfully', content: new OA\JsonContent(ref: '#/components/schemas/PatientResource')),
+                new OA\Response(response: 404, description: 'Patient not found'),
+                new OA\Response(response: 422, description: 'Validation Error'),
+                new OA\Response(response: 401, description: 'Unauthenticated')
+            ],
+            security: [['bearerAuth' => []]]
+        )]
     public function update(string $id, UpdatePatientRequest $request): JsonResponse
     {
         // Get validated fields from http request
