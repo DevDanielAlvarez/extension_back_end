@@ -2,10 +2,10 @@
 
 namespace App\Dto;
 
-use App\Contracts\IsDto;
+use Alvarez\ConcreteDto\AbstractDTO;
 
 
-class UserDto implements IsDto
+class UserDto extends AbstractDTO
 {
     public function __construct(
         public readonly string $name,
