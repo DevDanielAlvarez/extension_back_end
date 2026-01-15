@@ -426,6 +426,202 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "delete": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Delete patient",
+                "description": "Deletes a specific patient by ID",
+                "operationId": "593eda9a73fd98782af771e44d1adef6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Patient ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Patient deleted successfully"
+                    },
+                    "404": {
+                        "description": "Patient not found"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/responsibles": {
+            "get": {
+                "tags": [
+                    "Responsibles"
+                ],
+                "summary": "List all responsibles",
+                "description": "Retrieves a paginated list of all responsibles",
+                "operationId": "6f16f02b8441e03a8910a82c6c1678da",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Responsibles"
+                ],
+                "summary": "Create new responsible",
+                "description": "Creates a new responsible record with provided information",
+                "operationId": "b50c0e75b6d38b0dc63888cd83b95151",
+                "requestBody": {
+                    "description": "Data for creating new responsible",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResponsibleDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponsibleResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/responsibles/{id}": {
+            "put": {
+                "tags": [
+                    "Responsibles"
+                ],
+                "summary": "Update responsible",
+                "description": "Updates a specific responsible by ID",
+                "operationId": "b5e94edf01da1f84b1baaa5a0023b395",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Responsible ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Data for updating responsible",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResponsibleDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Responsible updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponsibleResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Responsible not found"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Responsibles"
+                ],
+                "summary": "Delete responsible",
+                "description": "Deletes a specific responsible by ID",
+                "operationId": "ac84ab5d7a7174c744c4311a08c076ee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Responsible ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Responsible deleted successfully"
+                    },
+                    "404": {
+                        "description": "Responsible not found"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         }
     },
@@ -494,6 +690,59 @@
                 },
                 "type": "object"
             },
+            "ResponsibleDTO": {
+                "title": "ResponsibleDTO",
+                "description": "DTO to Responsible",
+                "required": [
+                    "name",
+                    "document_type",
+                    "document_number",
+                    "telephone"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Full name",
+                        "type": "string",
+                        "example": "Joao Silva"
+                    },
+                    "document_type": {
+                        "description": "Document type",
+                        "type": "string",
+                        "example": "CPF"
+                    },
+                    "document_number": {
+                        "description": "Document number",
+                        "type": "string",
+                        "example": "12345678900"
+                    },
+                    "telephone": {
+                        "description": "Contact phone",
+                        "type": "string",
+                        "example": "11987654321"
+                    },
+                    "id": {
+                        "description": "Responsible ID",
+                        "type": "string",
+                        "example": 1,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-01-10T12:00:00Z",
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-01-12T08:30:00Z",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
             "PatientResource": {
                 "title": "PatientResource",
                 "description": "Resposta detalhada do paciente",
@@ -535,6 +784,43 @@
                     }
                 },
                 "type": "object"
+            },
+            "ResponsibleResource": {
+                "title": "ResponsibleResource",
+                "description": "Resposta detalhada do responsavel",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Joao Silva"
+                    },
+                    "document_type": {
+                        "type": "string",
+                        "example": "CPF"
+                    },
+                    "document_number": {
+                        "type": "string",
+                        "example": "12345678900"
+                    },
+                    "telephone": {
+                        "type": "string",
+                        "example": "11987654321"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-01-10T12:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-01-12T08:30:00Z"
+                    }
+                },
+                "type": "object"
             }
         },
         "securitySchemes": {
@@ -556,6 +842,10 @@
         {
             "name": "Patients",
             "description": "Patients"
+        },
+        {
+            "name": "Responsibles",
+            "description": "Responsibles"
         }
     ]
 }
