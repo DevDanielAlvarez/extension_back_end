@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Dto\ResponsibleDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Responsible\CreateResponsibleRequest;
+use App\Http\Requests\Api\V1\UpdateResponsibleRequest;
 use App\Http\Resources\Api\V1\ResponsibleResource;
 use App\Models\Responsible;
 use App\Services\ResponsibleService;
@@ -33,8 +34,22 @@ class ResponsibleController extends Controller
         ], 201);
     }
 
-    public function update()
+    public function update(string $id, UpdateResponsibleRequest $request): JsonResponse
     {
-
+        // get validated data
+        $data = $request->validated();
+        // find the responsible using responsible service
+        $responsibleService = ResponsibleService::find($id);
+        //create a dto to update a responsible
+        $responsibleDTO = ResponsibleDTO::fromArray($responsibleService->getRecord()->toArray());
+        // clone dto with new data
+        $responsibleDTO = $responsibleDTO->cloneWith($data);
+        // update a responsible using responsible service
+        $responsibleService->update($responsibleDTO);
+        // return response with responsible and a message
+        return response()->json([
+            'message' => 'Responsible updated successfully',
+            'data' => new ResponsibleResource($responsibleService->getRecord())
+        ]);
     }
 }
