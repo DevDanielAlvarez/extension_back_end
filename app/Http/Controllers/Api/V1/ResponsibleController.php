@@ -40,6 +40,15 @@ class ResponsibleController extends Controller
         return ResponsibleResource::collection(Responsible::paginate(10));
     }
 
+    public function show(string $id): JsonResponse
+    {
+        // find the responsible using responsible service
+        $responsibleService = ResponsibleService::find($id);
+        // return response with responsible
+        return response()->json([
+            'data' => new ResponsibleResource($responsibleService->getRecord())
+        ]);
+    }
     /**
      * Create new responsible
      *
@@ -173,4 +182,5 @@ class ResponsibleController extends Controller
         // return response with a message
         return response()->noContent();
     }
+
 }
