@@ -153,6 +153,36 @@ class PatientController extends Controller
         ]);
     }
 
+    /**
+     * Delete patient
+     * 
+     * Deletes a specific patient by ID.
+     *
+     * @param string $id - Patient ID
+     * @return Response|JsonResponse No content on success or error message
+     */
+    #[OA\Delete(
+            path: '/api/v1/patients/{id}',
+            summary: 'Delete patient',
+            description: 'Deletes a specific patient by ID',
+            tags: ['Patients'],
+            parameters: [
+                new OA\Parameter(
+                    name: 'id',
+                    in: 'path',
+                    required: true,
+                    description: 'Patient ID',
+                    schema: new OA\Schema(type: 'string')
+                )
+            ],
+            responses: [
+                new OA\Response(response: 204, description: 'Patient deleted successfully'),
+                new OA\Response(response: 404, description: 'Patient not found'),
+                new OA\Response(response: 500, description: 'Server error'),
+                new OA\Response(response: 401, description: 'Unauthenticated')
+            ],
+            security: [['bearerAuth' => []]]
+        )]
     public function destroy(string $id): Response|JsonResponse
     {
         try {
