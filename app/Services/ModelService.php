@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Contracts\IsDTO;
+
+use Alvarez\ConcreteDto\Contracts\IsDTO;
 use App\Dto\UserDto;
 use Illuminate\Database\Eloquent\Model;
 use RuntimeException;

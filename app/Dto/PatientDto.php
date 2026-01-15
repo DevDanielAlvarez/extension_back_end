@@ -2,7 +2,7 @@
 
 namespace App\Dto;
 
-use App\Contracts\IsDto;
+use Alvarez\ConcreteDto\AbstractDTO;
 use App\Enums\DocumentTypeEnum;
 use Carbon\Carbon;
 use OpenApi\Attributes as OA;
@@ -12,7 +12,7 @@ use OpenApi\Attributes as OA;
     description: "DTO to Patient",
     required: ["name", "document_type", "document_number", "telephone"]
 )]
-class PatientDto implements IsDto
+class PatientDto extends AbstractDTO
 {
     public function __construct(
         #[OA\Property(description: "Nome completo", example: "Maria Silva")]

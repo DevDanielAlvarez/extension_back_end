@@ -26,7 +26,13 @@ class CreateResponsibleRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'document_type' => ['required', Rule::enum(DocumentTypeEnum::class)],
-            'document_number' => ['required', 'string'],
+            'document_number' => [
+                'required',
+                'string',
+                Rule::unique('responsibles')->where(function ($query) {
+                    return $query->where('document_type', $this->input('document_type'));
+                })
+            ],
             'telephone' => ['required', 'string', 'max:50']
         ];
     }

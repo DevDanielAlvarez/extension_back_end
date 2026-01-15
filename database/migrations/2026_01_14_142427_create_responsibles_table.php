@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->string('document_number');
             $table->string('telephone');
             $table->timestamps();
+
+            $table->unique(['document_type', 'document_number']);
         });
     }
 
