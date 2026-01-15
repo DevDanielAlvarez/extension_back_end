@@ -13,4 +13,5 @@ class ResponsibleController extends Controller
     {
         return ResponsibleResource::collection(Responsible::paginate(10));
     }
+
 }
