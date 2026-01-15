@@ -40,6 +40,35 @@ class ResponsibleController extends Controller
         return ResponsibleResource::collection(Responsible::paginate(10));
     }
 
+    /**
+     * Show individual responsible
+     *
+     * Retrieves a specific responsible by ID.
+     *
+     * @param string $id - Responsible ID
+     * @return JsonResponse Responsible data
+     */
+    #[OA\Get(
+            path: '/api/v1/responsibles/{id}',
+            summary: 'Get responsible by ID',
+            description: 'Retrieves a specific responsible by ID',
+            tags: ['Responsibles'],
+            parameters: [
+                new OA\Parameter(
+                    name: 'id',
+                    in: 'path',
+                    required: true,
+                    description: 'Responsible ID',
+                    schema: new OA\Schema(type: 'string')
+                )
+            ],
+            responses: [
+                new OA\Response(response: 200, description: 'Success', content: new OA\JsonContent(ref: '#/components/schemas/ResponsibleResource')),
+                new OA\Response(response: 404, description: 'Responsible not found'),
+                new OA\Response(response: 401, description: 'Unauthenticated')
+            ],
+            security: [['bearerAuth' => []]]
+        )]
     public function show(string $id): JsonResponse
     {
         // find the responsible using responsible service

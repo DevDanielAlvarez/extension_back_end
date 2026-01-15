@@ -529,6 +529,48 @@
             }
         },
         "/api/v1/responsibles/{id}": {
+            "get": {
+                "tags": [
+                    "Responsibles"
+                ],
+                "summary": "Get responsible by ID",
+                "description": "Retrieves a specific responsible by ID",
+                "operationId": "b0fd2f9ca094bfade1af76d6b85e7f36",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Responsible ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponsibleResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Responsible not found"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
             "put": {
                 "tags": [
                     "Responsibles"
