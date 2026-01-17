@@ -35,4 +35,8 @@ class PatientResponsibleController extends Controller
                 PatientService::find($patientId)->getRecord()->responsibles
             );
     }
+
+    public function detach(Request $request)
+    {
+    }
 }
