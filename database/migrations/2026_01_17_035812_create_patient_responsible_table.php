@@ -15,6 +15,9 @@ return new class extends Migration {
             $table->foreignUlid('patient_id')->constrained('patients')->onDelete('cascade');
             $table->foreignUlid('responsible_id')->constrained('responsibles')->onDelete('cascade');
             $table->timestamps();
+
+            //rules
+            $table->unique(['patient_id', 'responsible_id']);
         });
     }
 

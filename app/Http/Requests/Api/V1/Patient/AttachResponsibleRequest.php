@@ -22,7 +22,7 @@ class AttachResponsibleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'responsible_id' => ['required', 'ulids', 'exists:responsibles,id']
+            'responsible_id' => ['required', 'exists:responsibles,id']
         ];
     }
 }
