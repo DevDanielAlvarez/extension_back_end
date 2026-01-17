@@ -10,6 +10,7 @@ use App\Services\PatientService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Response;
 
 class PatientResponsibleController extends Controller
 {
@@ -36,7 +37,13 @@ class PatientResponsibleController extends Controller
             );
     }
 
-    public function detach(Request $request)
+    public function destroy($patientId, $responsibleId): Response
     {
+        // find the patient using url parameter
+        $patientService = PatientService::find($patientId);
+        // detach the responsble from the patient
+        $patientService->getRecord()->responsibles()->detach($responsibleId);
+        return response()->noContent();
+        // return no content response
     }
 }
