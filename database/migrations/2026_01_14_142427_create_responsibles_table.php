@@ -10,15 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('responsibles', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
-            $table->string('document_type'); //enum controlled by php
+            $table->string('document_type');
             $table->string('document_number');
-            $table->date('admission_date');
-            $table->date('birthday');
-            $table->string('telephone')->nullable();
-            $table->json('nursing_assessments')->nullable();
+            $table->string('telephone');
             $table->timestamps();
 
             $table->unique(['document_type', 'document_number']);
@@ -30,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('responsibles');
     }
 };

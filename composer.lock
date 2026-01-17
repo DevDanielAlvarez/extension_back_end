@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f8bc58894b9727cd99ef42801937523",
+    "content-hash": "9de77ae2dc1e3b73595533c2f4012998",
     "packages": [
+        {
+            "name": "alvarez/concrete-dto",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DevDanielAlvarez/ConcreteDTO.git",
+                "reference": "56e8ce21593d5e853a28198891eced25a7201b6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DevDanielAlvarez/ConcreteDTO/zipball/56e8ce21593d5e853a28198891eced25a7201b6c",
+                "reference": "56e8ce21593d5e853a28198891eced25a7201b6c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "pestphp/pest": "^4.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Alvarez\\ConcreteDto\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "daniel",
+                    "email": "skyrimdaniel11@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/DevDanielAlvarez/ConcreteDTO/issues",
+                "source": "https://github.com/DevDanielAlvarez/ConcreteDTO/tree/v1.0.0"
+            },
+            "time": "2026-01-13T07:21:01+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.14.1",
