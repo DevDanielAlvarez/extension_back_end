@@ -34,7 +34,7 @@ collection:
     meta:
       id: fld_fbd0f92b25b64367a8ed5796ab58fcfd
       created: 1766953945951
-      modified: 1766953945951
+      modified: 1768393732308
       sortKey: -1766953945952
       description: ""
     children:
@@ -87,7 +87,7 @@ collection:
         meta:
           id: req_7043d9c349084740823724508e497b04
           created: 1767126757441
-          modified: 1767298297713
+          modified: 1767466760609
           isPrivate: false
           description: ""
           sortKey: -1767126757441
@@ -172,6 +172,400 @@ collection:
             disabled: false
           - name: Authorization
             value: Bearer 13|Yfj5DuW8RXcpgeMtva5NuUAEP1cODIZ9OyLMG7dpbe3ee735
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Patient
+    meta:
+      id: fld_0b11f84416414d0ebb31e7437a7af393
+      created: 1767384371177
+      modified: 1768393760972
+      sortKey: -1767384371177
+      description: ""
+    children:
+      - url: http://localhost:8000/api/v1/patients
+        name: Store
+        meta:
+          id: req_a862adc2febc40fb9a44d9568d2247f3
+          created: 1767384373525
+          modified: 1767466880974
+          isPrivate: false
+          description: ""
+          sortKey: -1767384373525
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            { 
+            	"name": "Maria Silva",
+              "document_type": "CPF",
+              "document_number": "12345678900",
+              "birthday": "1990-05-15",
+              "telephone": "11987654321",
+              "nursing_assessments": [
+                "Paciente estável"
+              ],
+              "admission_date": "2026-02-20",
+              "id": "1"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer 16|pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/patients
+        name: Index
+        meta:
+          id: req_8dedad0dd3a04c7eba483f86b7eba7c5
+          created: 1767415545326
+          modified: 1768507477592
+          isPrivate: false
+          description: ""
+          sortKey: -1767415545326
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer 16|pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/patients/01ke121yktdwcc037p2bty4a5w
+        name: Show
+        meta:
+          id: req_0fbc7b80137744a389060c75c9eb2f11
+          created: 1767464040322
+          modified: 1768400410256
+          isPrivate: false
+          description: ""
+          sortKey: -1767464040322
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer 16|pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/patients/01ke1204ckkhfy64mcc816bkqw
+        name: Update
+        meta:
+          id: req_c68bc4ce6e0f4bda9f4c5b2681117da8
+          created: 1767467006341
+          modified: 1768394440890
+          isPrivate: false
+          description: ""
+          sortKey: -1767341313228.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            { 
+            	"name": "Maria Silva21",
+              "document_type": "CPF",
+              "document_number": "12345678900",
+              "birthday": "1990-05-15",
+              "telephone": "11987654321",
+              "nursing_assessments": [
+                "Paciente estável"
+              ],
+              "admission_date": "2026-02-20"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer 16|pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/patients/01ke121yktdwcc037p2bty4a5w
+        name: New Request
+        meta:
+          id: req_4c85ec842c0f4b2bb062790a49c57f5c
+          created: 1768395261047
+          modified: 1768400417232
+          isPrivate: false
+          description: ""
+          sortKey: -1767464040422
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer 16|pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Responsible
+    meta:
+      id: fld_79e4cf74150d4da8bde66e6b7fe826a1
+      created: 1768507399106
+      modified: 1768515010262
+      sortKey: -1768507399106
+      description: ""
+    children:
+      - url: http://localhost:8000/api/v1/responsibles/01kf1vbrf9vqy5gtfa1x2b3vpp
+        name: Show
+        meta:
+          id: req_7b278f5d65c54c4a85181f491fc621fe
+          created: 1768507403126
+          modified: 1768515073097
+          isPrivate: false
+          description: ""
+          sortKey: -1768507403126
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/responsibles
+        name: Store
+        meta:
+          id: req_1b034d38284043079a2cbd7e0be444e9
+          created: 1768507581987
+          modified: 1768515034922
+          isPrivate: false
+          description: ""
+          sortKey: -1767985721774
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: name
+              value: daniel
+              description: ""
+              disabled: false
+            - name: document_type
+              value: CPF
+              description: ""
+              disabled: false
+            - name: document_number
+              value: "1231"
+              description: ""
+              disabled: false
+            - name: telephone
+              value: "1231"
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/responsibles/01keyryfes32q4zytcq3r9f1xd
+        name: Update
+        meta:
+          id: req_098c8fccdb6343028518b0edf980d592
+          created: 1768509801170
+          modified: 1768510083428
+          isPrivate: false
+          description: ""
+          sortKey: -1768246562450
+        method: PUT
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: name
+              value: "'danield'"
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/responsibles/01keyryfes32q4zytcq3r9f1xd
+        name: Delete
+        meta:
+          id: req_4a084098485e4ff4b87855e08a8bd3f2
+          created: 1768514416367
+          modified: 1768514487307
+          isPrivate: false
+          description: ""
+          sortKey: -1768116142112
+        method: DELETE
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: name
+              value: "'danield'"
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/api/v1/responsibles
+        name: Index
+        meta:
+          id: req_643fa6ebbf6247468989042d6d03beb3
+          created: 1768515024112
+          modified: 1768515024112
+          isPrivate: false
+          description: ""
+          sortKey: -1768376982788
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer pn62QQF90DmbEIuUPWUjqKVM4EKvLICy4Mq1AA2S189b3969
             description: ""
             disabled: false
         settings:
