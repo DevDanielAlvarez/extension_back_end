@@ -24,6 +24,9 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('patients', PatientController::class);
         // Responsible routes
         Route::apiResource('responsibles', ResponsibleController::class);
+        // Patient-Responsible routes
+        Route::post('patients/{patientId}/responsible', [\App\Http\Controllers\Api\V1\PatientResponsibleController::class, 'store'])->name('v1.patients.responsibles.store');
     });
+    // ====> END PROTECTED ROUTES <====
 });
 // ====> END V1 ROUTES <====
