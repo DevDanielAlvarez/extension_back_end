@@ -522,6 +522,154 @@
                 ]
             }
         },
+        "/api/v1/patients/{patientId}/responsibles": {
+            "get": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "List patient responsibles",
+                "description": "Retrieves all responsibles associated with a specific patient",
+                "operationId": "935f3dedb5363205b167f8199ad01714",
+                "parameters": [
+                    {
+                        "name": "patientId",
+                        "in": "path",
+                        "description": "Patient ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Patient not found"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Attach responsible to patient",
+                "description": "Attaches an existing responsible to a specific patient",
+                "operationId": "1f841230738b2bc86f8b13a9125bcf1c",
+                "parameters": [
+                    {
+                        "name": "patientId",
+                        "in": "path",
+                        "description": "Patient ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Responsible ID to attach",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "responsible_id"
+                                ],
+                                "properties": {
+                                    "responsible_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Responsible attached successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PatientResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Patient or Responsible not found"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/patients/{patientId}/responsibles/{responsibleId}": {
+            "delete": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Detach responsible from patient",
+                "description": "Removes the association between a patient and a responsible",
+                "operationId": "413922334c3d15b3a0ea413802d1b16e",
+                "parameters": [
+                    {
+                        "name": "patientId",
+                        "in": "path",
+                        "description": "Patient ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "responsibleId",
+                        "in": "path",
+                        "description": "Responsible ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Responsible detached successfully"
+                    },
+                    "404": {
+                        "description": "Patient or Responsible not found"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/responsibles": {
             "get": {
                 "tags": [
