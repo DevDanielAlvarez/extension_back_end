@@ -6,4 +6,6 @@ enum DocumentTypeEnum: string
 {
     case RG = "RG";
     case CPF = "CPF";
+
+    case OTHER = "OTHER";
 }

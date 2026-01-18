@@ -16,7 +16,12 @@ class Drug extends Model
         'content_quantity',
         'content_unit',
         'strength',
-        'is_coumpounded',
+        'is_compounded',
         'route_of_administration',
+    ];
+
+    protected $casts = [
+        'content_unit' => ContentUnitEnum::class,
+        'route_of_administration' => RouteOfAdministrationEnum::class,
     ];
 }

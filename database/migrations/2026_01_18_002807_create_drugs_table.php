@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->integer('content_quantity'); // 10, 20, 30 etc.
             $table->string('content_unit'); // caps, ml, mg, etc.
             $table->string('strength', 100); // 500mg, 250mg/5ml etc.
-            $table->boolean('is_coumpounded')->default(false);
+            $table->boolean('is_compounded')->default(false);
             $table->string('route_of_administration');
             $table->timestamps();
         });
